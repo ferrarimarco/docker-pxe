@@ -24,6 +24,7 @@ RUN mkdir -p /var/lib/tftpboot \
 # Setup PXE
 RUN mkdir -p /var/lib/tftpboot/pxelinux.cfg \
   && echo 'default memtest86\n\
+menu title PXE Boot Menu\n\
 prompt 1\n\
 timeout 15\n\
 label memtest86\n\
