@@ -17,9 +17,9 @@ RUN service dnsmasq stop
 ENV MEMTEST_VERSION 5.01
 RUN mkdir -p /var/lib/tftpboot \
   && wget http://www.memtest.org/download/$MEMTEST_VERSION/memtest86+-$MEMTEST_VERSION.bin.gz \
-  && gzip -dk memtest86+-$MEMTEST_VERSION.bin.gz \
+  && gzip -d memtest86+-$MEMTEST_VERSION.bin.gz \
   && mkdir -p /var/lib/tftpboot/memtest \
-  && cp memtest86+-$MEMTEST_VERSION.bin /var/lib/tftpboot/memtest/memtest86+
+  && mv memtest86+-$MEMTEST_VERSION.bin /var/lib/tftpboot/memtest/memtest86+
 
 # Setup PXE
 RUN mkdir -p /var/lib/tftpboot/pxelinux.cfg \
