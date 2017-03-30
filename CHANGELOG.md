@@ -5,6 +5,7 @@
 **Implemented enhancements:**
 
 - Move the configuration out of the Dockerfile [\#3](https://github.com/ferrarimarco/pxe/issues/3)
+- Write details about the test environment using Vagrant [\#2](https://github.com/ferrarimarco/pxe/issues/2)
 - Add Ubuntu 16.04 to the bootable OSes list [\#1](https://github.com/ferrarimarco/pxe/issues/1)
 
 

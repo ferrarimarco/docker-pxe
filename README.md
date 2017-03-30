@@ -31,10 +31,21 @@ If you want to use an existing DHCP server and let dnsmasq handle only the PXE, 
 
 All the configuration files can be modified at will. Just look at the Dockerfile to see where they are (mainly in `/etc` and `/var/lib/tftpboot`) and overwrite them with your own (mounting volumes from the Docker host or rebuilding the image).
 
-## How to validate the setup
-A possible test strategy is to manually create (via CLI or GUI) an empty Virtualbox VM configured in the following way:
-1. One `Host-only`network interface
-1. Boot from network as the first boot choice
+## Testing and validating the setup
+### Dependencies
+
+1. Virtualbox 5.1.16+
+1. Vagrant 1.9.3+
+
+### How to run
+
+After running the container with a suitable DHCP configuration (see above for instructions) and the `--net=host` option, you can run `vagrant up` from the root of the project. A Virtualbox VM (with a NATed network adapter) will boot from the given PXE.
+
+Note that you should check the IP address ranged configured by the Virtualbox DHCP server (if enabled) and configure your `dhcp-range` and `/var/lib/tftpboot/pxelinux.cfg/default` accordingly.
+
+#### Example
+
+If Virtualbox DHCP server assigns addresses in the `192.168.56.0/24` subnet, then the `dhcp-range` could be: `--dhcp-range=192.168.56.2,proxy`, where `192.168.56.2` is the address assigned to the PXE server. Remember to also update the ip addresses in `/var/lib/tftpboot/pxelinux.cfg/default` if you serve any content from the TFTP server (like a `preseed.cfg` for example) to point to the ip address of the container running this PXE. **For this reason it could be useful to manually assign (or reserve) ip addresses for containers running this PXE.**
 
 ## Contributions
 If you have suggestions, please create a new GitHub issue or a pull request.
