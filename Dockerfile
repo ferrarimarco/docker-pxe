@@ -15,20 +15,19 @@ RUN apt-get update \
 RUN service dnsmasq stop
 
 # Create the TFTP root directory
+RUN mkdir -p /var/lib/tftpboot
+
 # Download and extract MemTest86+
 ENV MEMTEST_VERSION 5.01
-RUN mkdir -p /var/lib/tftpboot \
-  && wget http://www.memtest.org/download/$MEMTEST_VERSION/memtest86+-$MEMTEST_VERSION.bin.gz \
+RUN wget http://www.memtest.org/download/$MEMTEST_VERSION/memtest86+-$MEMTEST_VERSION.bin.gz \
   && gzip -d memtest86+-$MEMTEST_VERSION.bin.gz \
   && mkdir -p /var/lib/tftpboot/memtest \
   && mv memtest86+-$MEMTEST_VERSION.bin /var/lib/tftpboot/memtest/memtest86+
 
-# Setup PXE
-RUN mkdir -p /var/lib/tftpboot/pxelinux.cfg
-COPY pxelinux.cfg/default /var/lib/tftpboot/pxelinux.cfg/default
+# Setup PXE and TFTP
 RUN ln -sf /usr/lib/PXELINUX/pxelinux.0 /var/lib/tftpboot/ \
   && ln -sf /usr/lib/syslinux/modules/bios/ldlinux.c32 /var/lib/tftpboot/
-COPY preseed/ /var/lib/tftpboot/preseed/
+COPY tftpboot/ /var/lib/tftpboot
 
 # Setup DNSMASQ
 COPY etc/ /etc
