@@ -27,6 +27,10 @@ If you want to enable the integrated DHCP server for a given IP address range ad
 ### Standalone DHCP server
 If you want to use an existing DHCP server and let dnsmasq handle only the PXE, add a `dhcp-range` option: `dhcp-range=x.x.x.x,proxy` where `x.x.x.x` is the IP address of the server running dnsmasq.
 
+## How to modify the configuration
+
+All the configuration files can be modified at will. Just look at the Dockerfile to see where they are (mainly in `/etc` and `/var/lib/tftpboot`) and overwrite them with your own (mounting volumes from the Docker host or rebuilding the image).
+
 ## How to validate the setup
 A possible test strategy is to manually create (via CLI or GUI) an empty Virtualbox VM configured in the following way:
 1. One `Host-only`network interface
