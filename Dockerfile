@@ -1,5 +1,7 @@
 FROM ubuntu:16.04
 
+LABEL maintainer "ferrari.marco@gmail.com"
+
 # Install the necessary packages
 RUN apt-get update \
   && apt-get install -y \
