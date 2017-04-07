@@ -26,7 +26,9 @@ RUN wget http://www.memtest.org/download/$MEMTEST_VERSION/memtest86+-$MEMTEST_VE
 
 # Setup PXE and TFTP
 RUN ln -sf /usr/lib/PXELINUX/pxelinux.0 /var/lib/tftpboot/ \
-  && ln -sf /usr/lib/syslinux/modules/bios/ldlinux.c32 /var/lib/tftpboot/
+  && ln -sf /usr/lib/syslinux/modules/bios/libutil.c32 /var/lib/tftpboot/ \
+  && ln -sf /usr/lib/syslinux/modules/bios/ldlinux.c32 /var/lib/tftpboot/ \
+  && ln -sf /usr/lib/syslinux/modules/bios/menu.c32 /var/lib/tftpboot/
 COPY tftpboot/ /var/lib/tftpboot
 
 # Setup DNSMASQ
