@@ -1,4 +1,5 @@
 DEFAULT ubuntu-16-04-amd64
+  SAY Now booting the kernel from Ubuntu 16.04 (64-bit)...
 
 LABEL memtest86
   MENU LABEL Memtest86+
