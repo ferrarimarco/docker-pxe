@@ -4,6 +4,7 @@
 
 **Implemented enhancements:**
 
+- Remove Ubuntu 16.04 boot option [\#6](https://github.com/ferrarimarco/pxe/issues/6)
 - Show the boot menu [\#5](https://github.com/ferrarimarco/pxe/issues/5)
 - Move the configuration out of the Dockerfile [\#3](https://github.com/ferrarimarco/pxe/issues/3)
 - Write details about the test environment using Vagrant [\#2](https://github.com/ferrarimarco/pxe/issues/2)
