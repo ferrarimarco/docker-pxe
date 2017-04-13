@@ -27,6 +27,24 @@ If you want to use an existing DHCP server and let dnsmasq handle only the PXE, 
 
 All the configuration files can be modified at will. Just look at the Dockerfile to see where they are (mainly in `/etc` and `/var/lib/tftpboot`) and overwrite them with your own (mounting volumes from the Docker host or rebuilding the image).
 
+### Additional PXE Boot Menu Entries
+
+If you just want to add additional menu entries to the boot menu, just overwrite the contents of `/var/lib/tftpboot/pxelinux.cfg/additional_menu_entries` file.
+The syntax for this file is described in the [syslinux documentation](http://www.syslinux.org/wiki/index.php?title=Config).
+
+#### Example: 2nd Memtest86+ plus Ubuntu 16.04 Boot Options
+Here is an `additional_menu_entries` file to include (along with the default Memtest86+) two additional boot options: a customized Memtest86+ and Ubuntu 16.04.
+
+```
+LABEL memtest86-2
+  MENU LABEL Memtest86+ 2nd entry
+  KERNEL /memtest/memtest86+
+LABEL ubuntu-16-04-amd64
+  MENU LABEL Ubuntu 16.04 amd64
+  KERNEL /ubuntu/16.04/16.04.2-server-amd64/install/netboot/ubuntu-installer/amd64/linux
+  APPEND /install/vmlinuz auto=true interface=eth0 hostname=cluster domain=home url=tftp://192.168.56.2/preseed/16.04/preseed.cfg initrd=ubuntu/16.04/16.04.2-server-amd64/install/netboot/ubuntu-installer/amd64/initrd.gz debian-installer=en_US locale=en_US kbd-chooser/method=us keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false --
+```
+
 ## Testing and validating the setup
 ### Dependencies
 

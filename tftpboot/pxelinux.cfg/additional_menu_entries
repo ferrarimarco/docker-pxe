@@ -1,0 +1,3 @@
+LABEL memtest86
+  MENU LABEL Memtest86+ 2nd entry
+  KERNEL /memtest/memtest86+

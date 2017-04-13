@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/ferrarimarco/pxe/tree/HEAD)
+
+[Full Changelog](https://github.com/ferrarimarco/pxe/compare/1.1.0...HEAD)
+
+**Implemented enhancements:**
+
+- Implement the support to add additional boot menu entries without the need to overwrite the contents of default configuarion [\#7](https://github.com/ferrarimarco/pxe/issues/7)
+
 ## [1.1.0](https://github.com/ferrarimarco/pxe/tree/1.1.0) (2017-04-08)
 [Full Changelog](https://github.com/ferrarimarco/pxe/compare/1.0.0...1.1.0)
 
