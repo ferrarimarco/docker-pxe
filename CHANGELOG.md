@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/ferrarimarco/pxe/tree/HEAD)
-
-[Full Changelog](https://github.com/ferrarimarco/pxe/compare/1.1.0...HEAD)
+## [1.2.0](https://github.com/ferrarimarco/pxe/tree/1.2.0) (2017-04-19)
+[Full Changelog](https://github.com/ferrarimarco/pxe/compare/1.1.0...1.2.0)
 
 **Implemented enhancements:**
 
