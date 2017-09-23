@@ -21,7 +21,7 @@ If you want to inspect the container just run it overwriting the entrypoint: `--
 If you want to enable the integrated DHCP server for a given IP address range add a `dhcp-range` option: `dhcp-range=x.x.x.x,y.y.y.y,z.z.z.z` where `x.x.x.x` is the start of the range, `y.y.y.y` is the end and `z.z.z.z` is the subnet mask.
 
 ### Standalone DHCP server
-If you want to use an existing DHCP server and let dnsmasq handle only the PXE, add a `dhcp-range` option: `dhcp-range=x.x.x.x,proxy` where `x.x.x.x` is the IP address of the server running dnsmasq.
+If you want to use an existing DHCP server and let `dnsmasq` handle only the PXE, add a `dhcp-range` option: `dhcp-range=x.x.x.x,proxy` where `x.x.x.x` is the IP address of the server running dnsmasq.
 
 ## How to modify the configuration
 
