@@ -45,7 +45,7 @@ LABEL memtest86-2
 LABEL ubuntu-16-04-amd64
   MENU LABEL Ubuntu 16.04 amd64
   KERNEL /ubuntu/16.04/16.04.2-server-amd64/install/netboot/ubuntu-installer/amd64/linux
-  APPEND /install/vmlinuz auto=true interface=eth0 hostname=cluster domain=home url=tftp://192.168.56.2/preseed/16.04/preseed.cfg initrd=ubuntu/16.04/16.04.2-server-amd64/install/netboot/ubuntu-installer/amd64/initrd.gz debian-installer=en_US locale=en_US kbd-chooser/method=us keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false --
+  APPEND /install/vmlinuz auto=true interface=eth0 hostname=cluster domain=home url=tftp://<pxe-container-ip>/preseed/16.04/preseed.cfg initrd=ubuntu/16.04/16.04.2-server-amd64/install/netboot/ubuntu-installer/amd64/initrd.gz debian-installer=en_US locale=en_US kbd-chooser/method=us keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false --
 ```
 
 ## Testing and validating the setup
@@ -62,7 +62,9 @@ Note that you should check the IP address ranged configured by the Virtualbox DH
 
 #### Example
 
-If Virtualbox DHCP server assigns addresses in the `192.168.56.0/24` subnet, then the `dhcp-range` could be: `--dhcp-range=192.168.56.2,proxy`, where `192.168.56.2` is the address assigned to the PXE server. Remember to also update the IP addresses in `/var/lib/tftpboot/pxelinux.cfg/default` if you serve any content from the TFTP server (like a `preseed.cfg` for example) to point to the IP address of the container running this PXE. **For this reason it could be useful to manually assign (or reserve) ip addresses for containers running this PXE.**
+Virtualbox runs a DHCP server by default in each virtual network. If you want to test the PXE feature you have to run a container based on this image with DNSMasq as a DHCP proxy (see [Standalone Mode](#standalone-dhcp-server)) and with the host network stack (see the `--net=host` option) so you know in advance the IP address of the container running DNSMasq: it's the same as the Docker host!
+
+If Virtualbox DHCP server assigns addresses in the `192.168.56.0/24` subnet (check the virtual network configuration to know this), then the `dhcp-range` could be: `dhcp-range=192.168.56.2,proxy`, where `192.168.56.2` is the address assigned to the Docker host running the container based on this image in "host network" mode. Remember to also update any IP address in `/var/lib/tftpboot/pxelinux.cfg/default` you may have configured, if you serve any content from the TFTP server (like a `preseed.cfg` for example) to point to the IP address of the container running this PXE. **For this reason it could be useful to manually assign (or reserve) IP addresses (or better, hostnames!) for containers running this PXE.**
 
 ## Contributions
 If you have suggestions, please create a new GitHub issue or a pull request.

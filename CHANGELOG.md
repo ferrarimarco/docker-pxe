@@ -5,6 +5,7 @@
 **Implemented enhancements:**
 
 - Add Docker hub badges to README [\#10](https://github.com/ferrarimarco/pxe/issues/10)
+- Unclear documentation about pxe container IP [\#9](https://github.com/ferrarimarco/pxe/issues/9)
 
 ## [1.2.0](https://github.com/ferrarimarco/pxe/tree/1.2.0) (2017-04-19)
 [Full Changelog](https://github.com/ferrarimarco/pxe/compare/1.1.0...1.2.0)
