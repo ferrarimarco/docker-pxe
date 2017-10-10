@@ -1,11 +1,17 @@
 # Change Log
 
+## [Unreleased](https://github.com/ferrarimarco/home-lab/tree/HEAD)
+
+**Implemented enhancements:**
+
+- Add Docker hub badges to README [\#10](https://github.com/ferrarimarco/pxe/issues/10)
+
 ## [1.2.0](https://github.com/ferrarimarco/pxe/tree/1.2.0) (2017-04-19)
 [Full Changelog](https://github.com/ferrarimarco/pxe/compare/1.1.0...1.2.0)
 
 **Implemented enhancements:**
 
-- Implement the support to add additional boot menu entries without the need to overwrite the contents of default configuarion [\#7](https://github.com/ferrarimarco/pxe/issues/7)
+- Implement the support to add additional boot menu entries without the need to overwrite the contents of default configuration [\#7](https://github.com/ferrarimarco/pxe/issues/7)
 
 ## [1.1.0](https://github.com/ferrarimarco/pxe/tree/1.1.0) (2017-04-08)
 [Full Changelog](https://github.com/ferrarimarco/pxe/compare/1.0.0...1.1.0)

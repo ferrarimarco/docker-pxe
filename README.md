@@ -1,4 +1,7 @@
 # Dockerized PXE
+[![Docker Pulls](https://img.shields.io/docker/pulls/ferrarimarco/pxe.svg)](https://hub.docker.com/r/ferrarimarco/pxe/)
+[![Docker Automated build](https://img.shields.io/docker/automated/ferrarimarco/pxe.svg)](https://hub.docker.com/r/ferrarimarco/pxe/)
+
 A Docker image serving as a standalone [PXE](https://en.wikipedia.org/wiki/Preboot_Execution_Environment) (running Dnsmasq). This server can be placed in an existing network infrastructure with an already configured DHCP server or in a network without any DHCP server.
 
 This PXE currently serves:
