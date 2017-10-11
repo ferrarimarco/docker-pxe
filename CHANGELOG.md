@@ -1,6 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/ferrarimarco/home-lab/tree/HEAD)
+## [1.2.1](https://github.com/ferrarimarco/pxe/tree/1.2.1) (2017-10-11)
+[Full Changelog](https://github.com/ferrarimarco/pxe/compare/1.2.0...1.2.1)
 
 **Implemented enhancements:**
 
