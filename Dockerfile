@@ -29,8 +29,8 @@ RUN service dnsmasq stop
 
 # Download and extract MemTest86+
 ENV MEMTEST_VERSION 5.01
-RUN wget http://www.memtest.org/download/$MEMTEST_VERSION/memtest86+-$MEMTEST_VERSION.bin.gz \
-  && gzip -d memtest86+-$MEMTEST_VERSION.bin.gz \
+RUN wget -q http://www.memtest.org/download/"$MEMTEST_VERSION"/memtest86+-"$MEMTEST_VERSION".bin.gz \
+  && gzip -d memtest86+-"$MEMTEST_VERSION".bin.gz \
   && mkdir -p /var/lib/tftpboot/memtest \
   && mv memtest86+-$MEMTEST_VERSION.bin /var/lib/tftpboot/memtest/memtest86+
 
