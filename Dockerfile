@@ -23,10 +23,6 @@ RUN \
   && rm -rf "$TEMP_SYSLINUX_PATH" \
   && rm /tmp/syslinux-"$SYSLINUX_VERSION".tar.gz
 
-# Stop the dnsmasq service that is automatically started after installing the
-# corresponding package
-RUN service dnsmasq stop
-
 # Download and extract MemTest86+
 ENV MEMTEST_VERSION 5.01
 RUN wget -q http://www.memtest.org/download/"$MEMTEST_VERSION"/memtest86+-"$MEMTEST_VERSION".bin.gz \
