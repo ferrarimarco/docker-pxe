@@ -1,12 +1,12 @@
-FROM ubuntu:16.04
+FROM alpine:3.7
 
 LABEL maintainer "ferrari.marco@gmail.com"
 
 # Install the necessary packages
-RUN apt-get update \
-  && apt-get install -y \
-    dnsmasq \
-    wget
+RUN apk add --update \
+  dnsmasq \
+  wget \
+  && rm -rf /var/cache/apk/*
 
 ENV SYSLINUX_VERSION 6.03
 ENV TEMP_SYSLINUX_PATH /tmp/syslinux-"$SYSLINUX_VERSION"
