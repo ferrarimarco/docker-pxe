@@ -18,7 +18,7 @@ The easiest way to use instances of this image to provide a PXE in an existing n
 
 To sum up: `docker run -it --rm --net=host ferrarimarco/pxe`
 
-If you want to inspect the container just run it overwriting the entrypoint: `--entrypoint=/bin/bash`
+If you want to inspect the container just run it overwriting the entrypoint: `--entrypoint=/bin/sh`
 
 ### Integrated DHCP server
 If you want to enable the integrated DHCP server for a given IP address range add a `dhcp-range` option: `dhcp-range=x.x.x.x,y.y.y.y,z.z.z.z` where `x.x.x.x` is the start of the range, `y.y.y.y` is the end and `z.z.z.z` is the subnet mask.
