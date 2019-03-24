@@ -2,6 +2,8 @@ FROM alpine:3.9
 
 LABEL maintainer "ferrari.marco@gmail.com"
 
+VOLUME [ "/var/lib/tftpboot/share/extra", "/var/lib/tftpboot/pxelinux.cfg/extra" ]
+
 # Install the necessary packages
 RUN apk add --update \
   dnsmasq \
@@ -15,7 +17,7 @@ RUN \
   mkdir -p "$TEMP_SYSLINUX_PATH" \
   && wget -q https://www.kernel.org/pub/linux/utils/boot/syslinux/syslinux-"$SYSLINUX_VERSION".tar.gz \
   && tar -xzf syslinux-"$SYSLINUX_VERSION".tar.gz \
-  && mkdir -p /var/lib/tftpboot \
+  && mkdir -p /var/lib/tftpboot/share/extra \
   && cp "$TEMP_SYSLINUX_PATH"/bios/core/pxelinux.0 /var/lib/tftpboot/ \
   && cp "$TEMP_SYSLINUX_PATH"/bios/com32/libutil/libutil.c32 /var/lib/tftpboot/ \
   && cp "$TEMP_SYSLINUX_PATH"/bios/com32/elflink/ldlinux/ldlinux.c32 /var/lib/tftpboot/ \
@@ -27,8 +29,8 @@ RUN \
 ENV MEMTEST_VERSION 5.01
 RUN wget -q http://www.memtest.org/download/"$MEMTEST_VERSION"/memtest86+-"$MEMTEST_VERSION".bin.gz \
   && gzip -d memtest86+-"$MEMTEST_VERSION".bin.gz \
-  && mkdir -p /var/lib/tftpboot/memtest \
-  && mv memtest86+-$MEMTEST_VERSION.bin /var/lib/tftpboot/memtest/memtest86+
+  && mkdir -p /var/lib/tftpboot/share/memtest \
+  && mv memtest86+-$MEMTEST_VERSION.bin /var/lib/tftpboot/share/memtest/memtest86+
 
 # Configure PXE and TFTP
 COPY tftpboot/ /var/lib/tftpboot

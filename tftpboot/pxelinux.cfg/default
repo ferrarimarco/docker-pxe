@@ -3,9 +3,9 @@ DEFAULT memtest86
 
 LABEL memtest86
   MENU LABEL Memtest86+
-  KERNEL /memtest/memtest86+
+  KERNEL /share/memtest/memtest86+
 # eventually include additional entries
-INCLUDE pxelinux.cfg/additional_menu_entries
+INCLUDE pxelinux.cfg/extra/additional_menu_entries
 
 MENU CMDLINEROW 15
 MENU COLOR title 1;34;49 #eea0a0ff #cc333355 std
