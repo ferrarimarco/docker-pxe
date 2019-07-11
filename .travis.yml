@@ -4,7 +4,7 @@ addons:
     packages:
     - docker-ce
     sources:
-    - sourceline: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable test nightly'
+    - sourceline: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) nightly'
       key_url: 'https://download.docker.com/linux/ubuntu/gpg'
 
 dist: xenial
