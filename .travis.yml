@@ -7,11 +7,6 @@ addons:
     - sourceline: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable test'
       key_url: 'https://download.docker.com/linux/ubuntu/gpg'
 
-# before_install:
-#   - mkdir -p "$DOCKER_BUILDX_DIR_PATH"
-#   - curl -fsSL https://github.com/docker/buildx/releases/latest -o "$DOCKER_BUILDX_PATH"
-#   - chmod a+x "$DOCKER_BUILDX_PATH"
-
 dist: xenial
 
 env:
