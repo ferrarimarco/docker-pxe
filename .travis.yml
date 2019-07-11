@@ -1,11 +1,15 @@
 ---
-services:
-  - docker
-
 addons:
   apt:
     packages:
     - docker-ce
+
+dist: xenial
+
+language: minimal
+
+services:
+  - docker
 
 script:
   - docker version
