@@ -9,12 +9,13 @@ addons:
 
 before_install:
   - mkdir -p "$DOCKER_BUILDX_PATH"
-  - curl -fsSL https://github.com/docker/buildx/releases/latest -o "$DOCKER_BUILDX_PATH"/docker-buildx
+  - curl -fsSL https://github.com/docker/buildx/releases/latest -o "$DOCKER_BUILDX_PATH"
+  - chmod a+x "$DOCKER_BUILDX_PATH"
 
 dist: xenial
 
 env:
-  - DOCKER_BUILDX_PATH="$HOME"/.docker/cli-plugins
+  - DOCKER_BUILDX_PATH="$HOME"/.docker/cli-plugins/docker-buildx
 
 language: minimal
 
