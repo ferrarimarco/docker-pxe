@@ -14,10 +14,18 @@ before_script:
   - docker version
 
 deploy:
-  provider: script
-  script:
-    - export DOCKER_TAG="$(if [ ! -z "$TRAVIS_TAG" ]; then "$TRAVIS_TAG"; elif [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo "" ; fi)"
-    - echo "$DOCKER_TAG"
+  - on:
+      branch: master
+    provider: script
+    script:
+      - export DOCKER_TAG="latest"
+      - echo "$DOCKER_TAG"
+  - on:
+      tags: true
+    provider: script
+    script:
+      - export DOCKER_TAG="$TRAVIS_TAG"
+      - echo "$DOCKER_TAG"
 
 dist: xenial
 
