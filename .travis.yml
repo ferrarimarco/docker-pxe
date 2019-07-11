@@ -18,6 +18,7 @@ env:
   global:
     - DOCKER_BUILDX_DIR_PATH="${HOME}/.docker/cli-plugins"
     - DOCKER_BUILDX_PATH="${DOCKER_BUILDX_DIR_PATH}/docker-buildx"
+    - DOCKER_CLI_EXPERIMENTAL=enabled
 
 language: minimal
 
