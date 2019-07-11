@@ -7,6 +7,9 @@ addons:
     - sourceline: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable test'
       key_url: 'https://download.docker.com/linux/ubuntu/gpg'
 
+before_install:
+  - docker run --privileged linuxkit/binfmt:v0.7
+
 dist: xenial
 
 env:
