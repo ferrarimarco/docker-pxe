@@ -16,3 +16,4 @@ services:
 
 script:
   - docker version
+  - docker buildx ls
