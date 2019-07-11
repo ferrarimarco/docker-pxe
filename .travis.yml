@@ -15,8 +15,9 @@ before_install:
 dist: xenial
 
 env:
-  - DOCKER_BUILDX_DIR_PATH="${HOME}/.docker/cli-plugins"
-  - DOCKER_BUILDX_PATH="${DOCKER_BUILDX_DIR_PATH}/docker-buildx"
+  global:
+    - DOCKER_BUILDX_DIR_PATH="${HOME}/.docker/cli-plugins"
+    - DOCKER_BUILDX_PATH="${DOCKER_BUILDX_DIR_PATH}/docker-buildx"
 
 language: minimal
 
