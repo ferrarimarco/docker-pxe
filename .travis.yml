@@ -17,11 +17,11 @@ deploy:
   - on:
       branch: master
     provider: script
-    script: export DOCKER_TAG="latest" && echo "$DOCKER_TAG"
+    script: echo "latest"
   - on:
       tags: true
     provider: script
-    script: export DOCKER_TAG="$TRAVIS_TAG" && echo "$DOCKER_TAG"
+    script: echo "$TRAVIS_TAG"
 
 dist: xenial
 
