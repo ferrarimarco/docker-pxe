@@ -38,5 +38,5 @@ COPY etc/ /etc
 
 # Start dnsmasq. It picks up default configuration from /etc/dnsmasq.conf and
 # /etc/default/dnsmasq plus any command line switch
-ENTRYPOINT ["dnsmasq", "--no-daemon"]
+ENTRYPOINT ["dnsmasq", "--no-daemon", "--dhcp-broadcast"]
 CMD ["--dhcp-range=192.168.56.2,proxy"]
