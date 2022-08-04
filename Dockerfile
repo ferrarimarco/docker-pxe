@@ -23,7 +23,7 @@ RUN \
   && cp "$TEMP_SYSLINUX_PATH"/bios/com32/menu/menu.c32 /var/lib/tftpboot/ \
   && rm -rf "$TEMP_SYSLINUX_PATH" \
   && rm /tmp/syslinux-"$SYSLINUX_VERSION".tar.gz \
-  && wget -q http://www.memtest.org/download/"$MEMTEST_VERSION"/memtest86+-"$MEMTEST_VERSION".bin.gz \
+  && wget -q http://www.memtest.org/download/archives/"$MEMTEST_VERSION"/memtest86+-"$MEMTEST_VERSION".bin.gz \
   && gzip -d memtest86+-"$MEMTEST_VERSION".bin.gz \
   && mkdir -p /var/lib/tftpboot/memtest \
   && mv memtest86+-$MEMTEST_VERSION.bin /var/lib/tftpboot/memtest/memtest86+
