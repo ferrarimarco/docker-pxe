@@ -3,10 +3,9 @@ FROM alpine:3.16.0
 LABEL maintainer "ferrari.marco@gmail.com"
 
 # Install the necessary packages
-RUN apk add --update \
+RUN apk add --no-cache \
   dnsmasq \
-  wget \
-  && rm -rf /var/cache/apk/*
+  wget
 
 ENV MEMTEST_VERSION 5.31b
 ENV SYSLINUX_VERSION 6.03

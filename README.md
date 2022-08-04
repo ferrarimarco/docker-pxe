@@ -17,7 +17,7 @@ These are the dependencies required to build and run the container image:
 The `ENTRYPOINT` of this image is set to run `dnsmasq` in `no-daemon` mode.
 
 You can add one or more desired `dhcp-range`s as command-line options. For more
-information about dnsmasq command line options, refer to [dnsmasq documentation](http://www.thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html).
+information about dnsmasq command-line options, refer to [dnsmasq documentation](http://www.thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html).
 
 The easiest way to run containers based off this container image without configuring DHCP relays in your network,
 is to run a such containers using the network of the host running them. If you're
@@ -48,6 +48,7 @@ The syntax for this file is described in the [syslinux documentation](http://www
 
 Here is an `additional_menu_entries` file to include (along with the default Memtest86+) two additional boot options: a customized Memtest86+ and Ubuntu 16.04.
 
+<!-- markdownlint-disable line-length -->
 ```text
 LABEL memtest86-2
   MENU LABEL Memtest86+ 2nd entry
@@ -57,6 +58,7 @@ LABEL ubuntu-16-04-amd64
   KERNEL /ubuntu/16.04/16.04.2-server-amd64/install/netboot/ubuntu-installer/amd64/linux
   APPEND /install/vmlinuz auto=true interface=eth0 hostname=cluster domain=home url=tftp://<pxe-container-ip>/preseed/16.04/preseed.cfg initrd=ubuntu/16.04/16.04.2-server-amd64/install/netboot/ubuntu-installer/amd64/initrd.gz debian-installer=en_US locale=en_US kbd-chooser/method=us keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false --
 ```
+<!-- markdownlint-enable line-length -->
 
 ## Testing and validating the setup
 
