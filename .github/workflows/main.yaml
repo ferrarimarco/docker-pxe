@@ -1,13 +1,7 @@
 ---
 name: Build and push the container image
 
-on:  # yamllint disable-line rule:truthy
-  push:
-    paths:
-      - "docker/**"
-  pull_request:
-    paths:
-      - "docker/**"
+on: [push, pull_request]  # yamllint disable-line rule:truthy
 
 jobs:
   lint:
