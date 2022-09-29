@@ -97,7 +97,11 @@ jobs:
             )}}
           tags: ${{ steps.meta.outputs.tags }}
 
-      - if: steps.build-and-push.outcome == 'success'
+      - if: >
+          ${{ github.repository == 'ferrarimarco/docker-pxe'
+          && (github.ref == 'refs/heads/master' ||
+          (github.event_name == 'release' && github.event.action == 'published')
+          )}}
         name: Update repo description
         uses: peter-evans/dockerhub-description@v2
         with:
