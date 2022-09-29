@@ -82,8 +82,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - id: build-and-push
-        name: Build and push the container image
+      - name: Build and push the container image
         uses: docker/build-push-action@v3
         with:
           cache-from: type=gha
