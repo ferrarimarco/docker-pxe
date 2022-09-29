@@ -64,7 +64,7 @@ jobs:
 
       - name: Run a quick test case
         run: |
-          docker run --rm ${{ env.TEST_TAG }} --version
+          docker run --rm ${{ env.CONTAINER_IMAGE_ID }} --version
 
       - name: Login to Docker Hub
         if: ${{ github.repository == 'ferrarimarco/docker-pxe' && github.ref == 'refs/heads/master' }}
