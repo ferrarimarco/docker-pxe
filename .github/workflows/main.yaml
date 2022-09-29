@@ -92,7 +92,16 @@ jobs:
           push: ${{ github.repository == 'ferrarimarco/docker-pxe' && github.ref == 'refs/heads/master' }}
           tags: ${{ steps.meta.outputs.tags }}
 
-      - if: ${{ github.repository == 'ferrarimarco/docker-pxe' && github.ref == 'refs/heads/master' }}
+      - if: >
+          ${{ github.repository == 'ferrarimarco/docker-pxe'
+            && (
+              github.ref == 'refs/heads/master'
+              || (
+                github.event_name == 'release'
+                && github.event.action == 'published'
+                )
+            )
+          }})
         name: Update repo description
         uses: peter-evans/dockerhub-description@v2
         with:
