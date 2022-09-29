@@ -3,6 +3,8 @@ name: Build and push the container image
 
 on:  # yamllint disable-line rule:truthy
   push:
+    branches:
+      - master
   pull_request:
   release:
     types: [published]
