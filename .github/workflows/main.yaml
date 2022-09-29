@@ -40,7 +40,8 @@ jobs:
             "${{ env.CONTAINER_IMAGE_ID }}"
             "ghcr.io/${{ env.CONTAINER_IMAGE_ID }}"
           tags: |
-            type=ref,event=branch,enable={{is_default_branch}}
+            type=ref,event=branch
+            type=ref,event=pr
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}.{{patch}}
             type=semver,pattern={{major}}.{{minor}}
