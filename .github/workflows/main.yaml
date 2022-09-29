@@ -20,15 +20,38 @@ jobs:
           VALIDATE_JSCPD_ALL_CODEBASE: true
   build-container-images:
     env:
-      CONTAINER_IMAGE_ID: "ferrarimarco/pxe:latest"
+      CONTAINER_IMAGE_ID: "ferrarimarco/pxe"
     needs:
       - lint
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
+
+      - name: Generate container image metadata
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            "${{ env.CONTAINER_IMAGE_ID }}"
+            "ghcr.io/${{ env.CONTAINER_IMAGE_ID }}"
+          # generate container image tags based on the following events/attributes
+          tags: |
+            type=schedule
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}.{{patch}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      - name: Build container image
+
+      - name: Build the container image
         uses: docker/build-push-action@v3
         with:
           cache-from: type=gha
@@ -36,5 +59,46 @@ jobs:
           context: .
           load: true
           push: false
-          tags: "${{ env.CONTAINER_IMAGE_ID }}"
+          tags: |
+            "${{ env.CONTAINER_IMAGE_ID }}"
+
+      - name: Run a quick test case
+        run: |
+          docker run --rm ${{ env.TEST_TAG }} --version
+
+      - name: Login to Docker Hub
+        if: ${{ github.repository == 'ferrarimarco/docker-pxe' && github.ref == 'refs/heads/master' }}
+        uses: docker/login-action@v2.0.0
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Login to GitHub Container Registry
+        if: ${{ github.repository == 'ferrarimarco/docker-pxe' && github.ref == 'refs/heads/master' }}
+        uses: docker/login-action@v2.0.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push the container image
+        uses: docker/build-push-action@v3
+        with:
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          context: .
+          labels: ${{ steps.meta.outputs.labels }}
+          load: true
+          platforms: linux/amd64,linux/arm64
+          push: ${{ github.repository == 'ferrarimarco/docker-pxe' && github.ref == 'refs/heads/master' }}
+          tags: ${{ steps.meta.outputs.tags }}
+
+      - if: ${{ github.repository == 'ferrarimarco/docker-pxe' && github.ref == 'refs/heads/master' }}
+        name: Update repo description
+        uses: peter-evans/dockerhub-description@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: "${{ env.CONTAINER_IMAGE_ID }}"
+          short-description: "A virtualized implementation of PXE supported by dnsmasq"
 ...
