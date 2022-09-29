@@ -89,7 +89,16 @@ jobs:
           context: .
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64
-          push: ${{ github.repository == 'ferrarimarco/docker-pxe' && github.ref == 'refs/heads/master' }}
+          push: >
+            ${{ github.repository == 'ferrarimarco/docker-pxe'
+              && (
+                github.ref == 'refs/heads/master'
+                || (
+                  github.event_name == 'release'
+                  && github.event.action == 'published'
+                  )
+              )
+            }})
           tags: ${{ steps.meta.outputs.tags }}
 
       - if: >
