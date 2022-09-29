@@ -81,7 +81,8 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push the container image
+      - id: build-and-push
+        name: Build and push the container image
         uses: docker/build-push-action@v3
         with:
           cache-from: type=gha
@@ -91,26 +92,12 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: >
             ${{ github.repository == 'ferrarimarco/docker-pxe'
-              && (
-                github.ref == 'refs/heads/master'
-                || (
-                  github.event_name == 'release'
-                  && github.event.action == 'published'
-                  )
-              )
-            }})
+            && (github.ref == 'refs/heads/master' ||
+            (github.event_name == 'release' && github.event.action == 'published')
+            )}}
           tags: ${{ steps.meta.outputs.tags }}
 
-      - if: >
-          ${{ github.repository == 'ferrarimarco/docker-pxe'
-            && (
-              github.ref == 'refs/heads/master'
-              || (
-                github.event_name == 'release'
-                && github.event.action == 'published'
-                )
-            )
-          }})
+      - if: steps.build-and-push.outcome == 'success'
         name: Update repo description
         uses: peter-evans/dockerhub-description@v2
         with:
