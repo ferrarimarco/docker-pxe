@@ -2,7 +2,10 @@
 name: Build and push the container image
 
 on:  # yamllint disable-line rule:truthy
-  [push, pull_request]
+  push:
+  pull_request:
+  release:
+    types: [published]
 
 jobs:
   lint:
@@ -35,13 +38,11 @@ jobs:
             "${{ env.CONTAINER_IMAGE_ID }}"
             "ghcr.io/${{ env.CONTAINER_IMAGE_ID }}"
           tags: |
-            type=raw,value=latest,enable={{is_default_branch}}
-            type=ref,event=pr
+            type=ref,event=branch,enable={{is_default_branch}}
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}.{{patch}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
-            type=sha
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -105,5 +106,5 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: "${{ env.CONTAINER_IMAGE_ID }}"
-          short-description: "A virtualized implementation of PXE supported by dnsmasq"
+          short-description: "https://github.com/ferrarimarco/docker-pxe"
 ...
