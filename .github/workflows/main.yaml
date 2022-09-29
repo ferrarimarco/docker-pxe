@@ -3,6 +3,8 @@ name: Build and push the container image
 
 on:  # yamllint disable-line rule:truthy
   push:
+    branches:
+      - master
   pull_request:
   release:
     types: [published]
@@ -38,7 +40,8 @@ jobs:
             "${{ env.CONTAINER_IMAGE_ID }}"
             "ghcr.io/${{ env.CONTAINER_IMAGE_ID }}"
           tags: |
-            type=ref,event=branch,enable={{is_default_branch}}
+            type=ref,event=branch
+            type=ref,event=pr
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}.{{patch}}
             type=semver,pattern={{major}}.{{minor}}
@@ -80,8 +83,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - id: build-and-push
-        name: Build and push the container image
+      - name: Build and push the container image
         uses: docker/build-push-action@v3
         with:
           cache-from: type=gha
