@@ -1,4 +1,4 @@
-FROM alpine:3.16.3
+FROM alpine:3.17.0
 
 LABEL maintainer "ferrari.marco@gmail.com"
 
