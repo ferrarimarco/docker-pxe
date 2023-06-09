@@ -111,7 +111,7 @@ jobs:
           (github.event_name == 'release' && github.event.action == 'published')
           )
         name: Update repo description
-        uses: peter-evans/dockerhub-description@v3.1.2
+        uses: peter-evans/dockerhub-description@v3.4.1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
