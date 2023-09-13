@@ -54,7 +54,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build the container image
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -92,7 +92,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push the container image
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           cache-from: type=gha
           cache-to: type=gha,mode=max
