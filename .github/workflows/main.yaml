@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Super-Linter
-        uses: super-linter/super-linter@v5.7.2
+        uses: super-linter/super-linter@v7.3.0
         env:
           DISABLE_ERRORS: false
           ERROR_ON_MISSING_EXEC_BIT: true
