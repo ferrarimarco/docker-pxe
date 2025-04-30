@@ -27,6 +27,12 @@ using Docker, you can add the `--net=host` option when running the container:
 docker run -it --rm --net=host ferrarimarco/pxe
 ```
 
+or if you like docker compose
+
+```shell
+docker compose up -d
+```
+
 The container image is also available on GitHub container registry: [`ghcr.io/ferrarimarco/pxe`](https://github.com/ferrarimarco/docker-pxe/pkgs/container/pxe).
 
 This container image is multi-platform, and supports the following platforms:

@@ -1,0 +1,7 @@
+services:
+  docker-pxe:
+    image: pxe
+    build: .
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
