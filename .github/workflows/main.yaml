@@ -13,7 +13,7 @@ jobs:
   lint:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Super-Linter
         uses: super-linter/super-linter@v5.7.2
         env:
@@ -30,7 +30,7 @@ jobs:
       - lint
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Generate container image metadata
         id: meta
